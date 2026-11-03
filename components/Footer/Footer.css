@@ -1,0 +1,34 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(1120px, calc(100% - 48px));
+  margin: auto auto 0;
+  padding: 22px 0;
+  border-top: 1px solid #e6dfd6;
+  color: #827a72;
+  font-size: 12px;
+}
+
+.footer__copyright {
+  margin: 0;
+}
+
+.footer__link {
+  color: #a44110;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+    width: min(100% - 32px, 1120px);
+    padding: 18px 0;
+  }
+}

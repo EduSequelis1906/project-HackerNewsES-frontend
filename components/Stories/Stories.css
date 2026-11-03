@@ -1,0 +1,52 @@
+.stories {
+  flex: 1;
+  width: min(900px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 52px 0 72px;
+}
+
+.stories__intro {
+  margin-bottom: 30px;
+}
+
+.stories__eyebrow {
+  margin: 0 0 10px;
+  color: #c44b11;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.stories__title {
+  margin: 0;
+  color: #29241f;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: clamp(30px, 5vw, 44px);
+  letter-spacing: -1.2px;
+}
+
+.stories__description {
+  margin: 12px 0 0;
+  color: #716a63;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.stories__error {
+  margin: 22px 0;
+  padding: 14px 16px;
+  border: 1px solid #e7b7a5;
+  border-radius: 6px;
+  background-color: #fff4ef;
+  color: #8c3110;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .stories {
+    width: min(100% - 32px, 900px);
+    padding: 38px 0 54px;
+  }
+}

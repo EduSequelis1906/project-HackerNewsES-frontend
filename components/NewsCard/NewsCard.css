@@ -1,0 +1,114 @@
+.news-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  padding: 21px;
+  border: 1px solid #e8e2d9;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.news-card:hover {
+  border-color: #efc7a9;
+  box-shadow: 0 5px 18px rgba(55, 41, 28, 0.06);
+}
+
+.news-card__rank {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 6px;
+  background-color: #fff3e9;
+  color: #c44b11;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.news-card__content {
+  min-width: 0;
+}
+
+.news-card__title {
+  margin: 1px 0 9px;
+  color: #28231e;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.news-card__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.news-card__title a:hover {
+  color: #bf4a11;
+}
+
+.news-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  color: #81786e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.news-card__discussion {
+  display: inline-block;
+  margin-top: 11px;
+  color: #a44110;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.news-card__discussion:hover {
+  text-decoration: underline;
+}
+
+.news-card__save {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #e8c4ab;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #a44110;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.news-card__save:hover,
+.news-card__save--active {
+  background-color: #fff1e6;
+}
+
+@media (max-width: 560px) {
+  .news-card {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .news-card__rank {
+    width: 34px;
+    height: 34px;
+  }
+
+  .news-card__title {
+    font-size: 15px;
+  }
+
+  .news-card__save {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

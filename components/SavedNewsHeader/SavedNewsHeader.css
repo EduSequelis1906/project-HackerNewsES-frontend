@@ -1,0 +1,26 @@
+.saved-news-header {
+  margin-bottom: 28px;
+}
+
+.saved-news-header__eyebrow {
+  margin: 0 0 10px;
+  color: #c44b11;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.saved-news-header__title {
+  margin: 0;
+  color: #29241f;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: clamp(30px, 5vw, 44px);
+  letter-spacing: -1.2px;
+}
+
+.saved-news-header__summary {
+  margin: 12px 0 0;
+  color: #716a63;
+  font-size: 15px;
+}
