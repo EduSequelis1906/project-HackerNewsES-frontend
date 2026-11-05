@@ -1,0 +1,38 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navigation__link {
+  padding: 10px 13px;
+  border-radius: 6px;
+  color: #5f5a54;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.navigation__link:hover {
+  background-color: #fff3e9;
+  color: #b8430d;
+}
+
+.navigation__link--active {
+  color: #c44b11;
+  background-color: #fff3e9;
+}
+
+@media (max-width: 560px) {
+  .navigation {
+    width: 100%;
+    gap: 2px;
+  }
+
+  .navigation__link {
+    flex: 1;
+    padding: 11px 8px 14px;
+    text-align: center;
+  }
+}

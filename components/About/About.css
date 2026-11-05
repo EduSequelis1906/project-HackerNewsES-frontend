@@ -1,0 +1,40 @@
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 56px;
+  align-items: center;
+  padding: 64px 8.2% 76px;
+}
+
+.about__eyebrow {
+  margin: 0 0 12px;
+  color: #c44b11;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.about__title {
+  max-width: 480px;
+  margin: 0;
+  color: #29241f;
+  font-family: 'Roboto Slab', Georgia, serif;
+  font-size: clamp(25px, 3vw, 34px);
+  line-height: 1.28;
+}
+
+.about__description {
+  margin: 0;
+  color: #68615b;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 42px 4px 56px;
+  }
+}
