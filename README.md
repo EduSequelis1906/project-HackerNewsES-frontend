@@ -2,6 +2,7 @@
 
 ## LIVE DEMO
 
+En GITHUB
 https://edusequelis1906.github.io/project-HackerNewsES-frontend/
 
 ## Descripción del proyecto
@@ -13,7 +14,7 @@ historias para leerlas más tarde.
 
 El proyecto consume la API pública de Hacker News. La interfaz está en
 español, pero los títulos y el contenido de cada noticia se muestran tal como
-fueron publicados originalmente.
+fueron publicados originalmente. 
 
 ## Objetivo
 
