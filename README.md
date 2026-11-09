@@ -4,7 +4,6 @@
 
 https://edusequelis1906.github.io/project-HackerNewsES-frontend/
 
-
 ## Descripción del proyecto
 
 Hacker News ES es una aplicación web desarrollada con React para consultar
