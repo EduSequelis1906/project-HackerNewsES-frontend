@@ -1,5 +1,4 @@
-const API_BASE_URL = 'https://hacker-news.firebaseio.com/v0'
-const STORY_LIMIT = 30
+import { API_BASE_URL, STORY_LIMIT } from './constants'
 
 async function readJson(response, resource) {
   if (!response.ok) {

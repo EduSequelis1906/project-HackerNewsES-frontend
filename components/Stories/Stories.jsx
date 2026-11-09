@@ -1,37 +1,29 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getTopStories } from '../../utils/hackerNewsApi'
+import { useMemo, useState } from 'react'
+import {
+  NO_STORIES_MESSAGE,
+  SEARCH_NO_RESULTS_MESSAGE,
+  STORIES_PER_PAGE,
+} from '../../utils/constants'
 import NewsCardList from '../NewsCardList/NewsCardList'
 import Preloader from '../Preloader/Preloader'
 import SearchForm from '../SearchForm/SearchForm'
 import './Stories.css'
 
-function Stories({ savedStories, onSaveStory, onRemoveStory }) {
-  const [stories, setStories] = useState([])
+function Stories({
+  errorMessage,
+  isLoading,
+  savedStories,
+  stories,
+  onSaveStory,
+  onRemoveStory,
+}) {
   const [searchTerm, setSearchTerm] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [visibleCount, setVisibleCount] = useState(STORIES_PER_PAGE)
 
-  useEffect(() => {
-    const controller = new AbortController()
-
-    getTopStories(controller.signal)
-      .then(setStories)
-      .catch((error) => {
-        if (error.name !== 'AbortError') {
-          setErrorMessage(
-            'No fue posible cargar las noticias. Comprueba tu conexión e inténtalo de nuevo.',
-          )
-          console.error('Error al cargar las historias de Hacker News.', error)
-        }
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) {
-          setIsLoading(false)
-        }
-      })
-
-    return () => controller.abort()
-  }, [])
+  function handleSearch(term) {
+    setSearchTerm(term)
+    setVisibleCount(STORIES_PER_PAGE)
+  }
 
   const filteredStories = useMemo(() => {
     const normalizedSearch = searchTerm.toLocaleLowerCase('es')
@@ -53,22 +45,32 @@ function Stories({ savedStories, onSaveStory, onRemoveStory }) {
           Las noticias más votadas, actualizadas desde la API oficial.
         </p>
       </section>
-      <SearchForm onSearch={setSearchTerm} />
-      {errorMessage && (
-        <p className="stories__error" role="alert">{errorMessage}</p>
-      )}
+      <SearchForm onSearch={handleSearch} />
       {isLoading ? (
         <Preloader />
+      ) : errorMessage ? (
+        <p className="stories__error" role="alert">{errorMessage}</p>
       ) : (
-        <NewsCardList
-          emptyMessage={searchTerm
-            ? 'No encontramos historias que coincidan con tu búsqueda.'
-            : 'No hay historias disponibles por el momento.'}
-          onRemoveStory={onRemoveStory}
-          onSaveStory={onSaveStory}
-          savedStoryIds={savedStories.map((story) => story.id)}
-          stories={filteredStories}
-        />
+        <>
+          <NewsCardList
+            emptyMessage={searchTerm
+              ? SEARCH_NO_RESULTS_MESSAGE
+              : NO_STORIES_MESSAGE}
+            onRemoveStory={onRemoveStory}
+            onSaveStory={onSaveStory}
+            savedStoryIds={savedStories.map((story) => story.id)}
+            stories={filteredStories.slice(0, visibleCount)}
+          />
+          {visibleCount < filteredStories.length && (
+            <button
+              className="stories__more"
+              onClick={() => setVisibleCount((count) => count + STORIES_PER_PAGE)}
+              type="button"
+            >
+              Mostrar más
+            </button>
+          )}
+        </>
       )}
     </main>
   )

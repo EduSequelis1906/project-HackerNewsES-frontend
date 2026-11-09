@@ -52,16 +52,17 @@ App
 └── Footer
 ```
 
-`App` configura las rutas y mantiene el estado compartido de las historias
-guardadas. También se encarga de leer y actualizar `localStorage`. La página
-`Stories` solicita las noticias, administra los estados de carga y error y
-filtra los resultados. `NewsCardList` y `NewsCard` presentan las historias y
-comunican las acciones del usuario hacia los componentes que controlan el
-estado.
+`App` configura las rutas, carga las noticias y mantiene los estados de carga
+y error, además del estado compartido de las historias guardadas. También se
+encarga de leer y actualizar `localStorage`. La página `Stories` recibe las
+noticias por props y administra la búsqueda y la cantidad de resultados
+visibles. `NewsCardList` y `NewsCard` presentan las historias y comunican las
+acciones del usuario hacia los componentes que controlan el estado.
 
 La comunicación sigue un flujo unidireccional: los datos bajan desde el
 componente que mantiene el estado y las acciones suben mediante callbacks.
-Así, ambas páginas de noticias reflejan la misma lista de guardados.
+Así, ambas páginas de noticias reflejan la misma lista de guardados y cambiar
+de ruta no vuelve a solicitar los datos mientras la aplicación siga montada.
 
 ## Tecnologías utilizadas
 
@@ -84,10 +85,10 @@ src/
 	main.jsx                 # Monta React y carga los estilos globales
 	App.jsx                  # Exporta el componente principal
 components/
-	App/                     # Rutas, estado de guardados y persistencia
+	App/                     # Rutas, carga de noticias, guardados y persistencia
 	Header/                  # Cabecera y navegación
 	Main/                    # Página de inicio
-	Stories/                 # Carga y búsqueda de noticias
+	Stories/                 # Búsqueda y paginación de noticias
 	SearchForm/              # Formulario de búsqueda
 	NewsCardList/            # Lista reusable de historias
 	NewsCard/                # Tarjeta individual
@@ -96,6 +97,7 @@ components/
 	Footer/                  # Pie de página
 utils/
 	hackerNewsApi.js         # Funciones para consultar la API
+	constants.js             # Límites, clave de guardados y mensajes comunes
 ```
 
 ## Requisitos
