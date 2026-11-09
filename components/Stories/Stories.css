@@ -44,6 +44,31 @@
   line-height: 1.5;
 }
 
+.stories__more {
+  display: block;
+  min-width: 150px;
+  min-height: 46px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  border: 1px solid #e85d04;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #b8430d;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.stories__more:hover {
+  background-color: #fff4ef;
+}
+
+.stories__more:focus-visible {
+  outline: 3px solid rgba(232, 93, 4, 0.3);
+  outline-offset: 3px;
+}
+
 @media (max-width: 640px) {
   .stories {
     width: min(100% - 32px, 900px);

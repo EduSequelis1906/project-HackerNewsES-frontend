@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {
+  SAVED_STORIES_KEY,
+  STORIES_LOAD_ERROR_MESSAGE,
+} from '../../utils/constants'
+import { getTopStories } from '../../utils/hackerNewsApi'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
@@ -7,8 +12,6 @@ import NotFound from '../NotFound/NotFound'
 import SavedNews from '../SavedNews/SavedNews'
 import Stories from '../Stories/Stories'
 import './App.css'
-
-const SAVED_STORIES_KEY = 'hacker-news-es-saved-stories'
 
 function readSavedStories() {
   try {
@@ -38,6 +41,29 @@ function readSavedStories() {
 
 function App() {
   const [savedStories, setSavedStories] = useState(readSavedStories)
+  const [stories, setStories] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    getTopStories(controller.signal)
+      .then(setStories)
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setErrorMessage(STORIES_LOAD_ERROR_MESSAGE)
+          console.error('Error al cargar las historias de Hacker News.', error)
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setIsLoading(false)
+        }
+      })
+
+    return () => controller.abort()
+  }, [])
 
   useEffect(() => {
     try {
@@ -76,7 +102,10 @@ function App() {
             path="/stories"
             element={
               <Stories
+                errorMessage={errorMessage}
+                isLoading={isLoading}
                 savedStories={savedStories}
+                stories={stories}
                 onSaveStory={handleSaveStory}
                 onRemoveStory={handleRemoveStory}
               />

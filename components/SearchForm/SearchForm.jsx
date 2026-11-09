@@ -25,6 +25,7 @@ function SearchForm({ onSearch }) {
           id="story-search"
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Título o autor"
+          required
           type="search"
           value={query}
         />
